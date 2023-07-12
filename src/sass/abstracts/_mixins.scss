@@ -1,0 +1,59 @@
+/*
+The designs were created to the following widths:
+
+- Mobile: 375px
+- Desktop: 1440px
+*/ /*
+@mixin for-phone-only {
+  @media (max-width: 375px) {
+    @content;
+  }
+}
+//  @mixin for-tablet-portrait-up {
+//    @media (min-width: 600px) { @content; }
+//  }
+//  @mixin for-tablet-landscape-up {
+//    @media (min-width: 900px) { @content; }
+//  }
+//  @mixin for-desktop-up {
+//    @media (min-width: 1200px) { @content; }
+//  }
+@mixin for-big-desktop-up {
+  @media (min-width: 1440px) {
+    @content;
+  }
+}
+*/
+
+$breakpoints: (
+  "mobile": 375px,
+  "desktop": 1440px,
+);
+
+@mixin mobile {
+  @media (min-width: map-get($breakpoints, "mobile")) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: map-get($breakpoints, "desktop")) {
+    @content;
+  }
+}
+
+#divider {
+  @include mobile() {
+    // background-image: url("/images/pattern-divider-mobile.svg");
+    content: url("/images/pattern-divider-mobile.svg");
+  }
+  @include desktop() {
+    // background-image: url("/images/pattern-divider-desktop.svg");
+    content: url("/images/pattern-divider-desktop.svg");
+  }
+}
+.centercard {
+  @include desktop() {
+    max-width: 40%;
+  }
+}
